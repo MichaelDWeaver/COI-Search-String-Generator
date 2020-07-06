@@ -1,27 +1,33 @@
-# Auto detect text files and perform LF normalization
-* text=auto
 while True:
     # First Name
-    nf = input("Enter the author's first name : ")
+    name_first = input("Enter the author's first name : ")
     # Last Name
-    nl = input("Enter the author's last name : ")
+    name_last = input("Enter the author's last name : ")
 	#Affiliation
-	affiliation = input("Enter the authors affiliation : ")
+	affiliation = input("Enter the author's affiliation : ")
+	author_city = input ("Enter the author's city of residence :")
+	author_country = input ("Enter the author's country of residence :")
     # Publication Date
-    pm = input("Enter the Publication Month : ")
-    py = int(input("Enter the Publication Year : "))
+    publication_month = input("Enter the Publication Month : ")
+    publication_year = int(input("Enter the Publication Year : "))
     num1 = int('3')
 	num2 = int('10')
-    result = py - num1
-	y2 = py - num2
+    result = publication_year - num1
+	search_year = publication_year - num2
     # PubMed Search String
-    print ("PubMed Search String : ")
-    print ("((",nf," ",nl,"[Author]) AND ((",result,"/",pm,"/1[Date - Publication] : ",py,"/",pm,"/31[Date - Publication])))",sep="")
-    print ("PubMed Search String with Affiliation : ")
-    print ("((",nf," ",nl,"[Author]) AND ((",result,"/",pm,"/1[Date - Publication] : ",py,"/",pm,"/31[Date - Publication]))) AND ",affiliation,"[Affiliation]",sep="")
+	if affiliation !="" :
+		print ("PubMed Search String with Affiliation : ")
+		print ("((",name_first," ",name_last,"[Author]) AND ((",result,"/",publication_month,"/1[Date - Publication] : ",publication_year,"/",publication_month,"/31[Date - Publication]))) AND ",affiliation,"[Affiliation]",sep="")
+	else:
+		print ("PubMed Search String : ")
+		print ("((",name_first," ",name_last,"[Author]) AND ((",result,"/",publication_month,"/1[Date - Publication] : ",publication_year,"/",publication_month,"/31[Date - Publication])))",sep="")
     # USPTO Search String
-    print ("USPTO Search String : ")
-    print ("IN/(",nl,"-",nf,") AND ISD/",pm,"/1/",y2,"->",pm,"/31/",py,sep="")
-    cont = input("Press enter to create search strings for the next author next author. ")
+	if author_city != "":
+		print ("USPTO Search String with Affiliation :")
+		print ("IN/(",name_last,"-",name_first,") AND ISD/",publication_month,"/1/",search_year,"->",publication_month,"/31/",publication_year," AND IC/\"",author_city,"\" AND ICN/\"",author_country,"\"",sep="")
+	else:
+		print ("USPTO Search String : ")
+		print ("IN/(",name_last,"-",name_first,") AND ISD/",publication_month,"/1/",search_year,"->",publication_month,"/31/",publication_year,sep="")
+	cont = input("Press enter to create search strings for the next author next author. ")
     while cont.lower() not in ("y"):
         break
