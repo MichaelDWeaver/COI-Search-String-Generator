@@ -5,8 +5,11 @@ while True:
     name_last = input("Enter the author's last name : ")
 	#Affiliation
 	affiliation = input("Enter the author's affiliation : ")
-	author_city = input ("Enter the author's city of residence :")
-	author_country = input ("Enter the author's country of residence :")
+	author_city = input ("Enter the author's city of residence : ")
+	print ("Please use the following link to find the 2 letter abbreviation for the author\'s country.")
+	print ("http://patft.uspto.gov/netahtml/PTO/help/helpctry.htm")
+	print ("Cheatsheet: China-CN, United States-US, Canada-CA, United Kingdom-GB") 
+	author_country = input ("Enter the author's country of residence using the 2 letter country code from the link above : ")
     # Publication Date
     publication_month = input("Enter the Publication Month : ")
     publication_year = int(input("Enter the Publication Year : "))
