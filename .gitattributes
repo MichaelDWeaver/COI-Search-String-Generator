@@ -26,11 +26,14 @@ while True:
 		print ("((",name_first," ",name_last,"[Author]) AND ((",result,"/",publication_month,"/1[Date - Publication] : ",publication_year,"/",publication_month,"/31[Date - Publication])))",sep="")
     # USPTO Search String
 	if author_city != "":
-		print ("USPTO Search String with Affiliation :")
+		print ("USPTO Search String with Affiliation : ")
 		print ("IN/(",name_last,"-",name_first,") AND ISD/",publication_month,"/1/",search_year,"->",publication_month,"/31/",publication_year," AND IC/\"",author_city,"\" AND ICN/\"",author_country,"\"",sep="")
 	else:
 		print ("USPTO Search String : ")
 		print ("IN/(",name_last,"-",name_first,") AND ISD/",publication_month,"/1/",search_year,"->",publication_month,"/31/",publication_year,sep="")
+	# Google Patents Search String
+	print ("Google Patents Search String : ")
+	print ("((medical) OR (pharmaceutical)) inventor:(\"",name_first," ",name_last,"\") before:priority:",publication_year,publication_month,"31 after:priority:",search_year,publication_month,"01",sep="")
 	cont = input("Press enter to create search strings for the next author next author. ")
     while cont.lower() not in ("y"):
         break
